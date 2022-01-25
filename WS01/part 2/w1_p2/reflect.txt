@@ -1,0 +1,70 @@
+/* -----------------------------------------------------------------
+OOP345 Workshop 1 - part 2
+Filename: reflect.txt
+Author: Lucia Geraldine Millones
+Student ID: 131037186
+Email: lgmillones@myseneca.ca
+Section: NCC
+Instructor: Hong Huang
+Date : 01 / 23 / 2022
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my workshops and assignments.
+-------------------------------------------------------------------- */
+
+Workshop 1: Across Translation Units
+
+During this workshop I learned and applied the concept of internal and external linkage. The difference between them is that external linkage allows a variable with the same name that is declared in a different scope to be connected across different modules, where as internal linkage is a variable that shares the same name across different scopes but only within the same module and is invisible to other modules.
+
+In this workshop the external linkage variable were g_taxrate and g_dailydiscount and were used in the main module and the foodorder module (different modules). 
+
+//foodorder.h
+
+extern double g_taxrate;
+extern double g_dailydiscount;
+
+Internal linkage was used for the counter in the display function.
+
+//foodorder.cpp
+
+static int counter = 0;
+
+Static variables like this counter are useful so that each time an object would call the display function (within the same module) the counter would be updated throughout the lifetime of the program.
+
+As for upgrading my foodorder class from part 1 to part 2, the changes I made were: changing the m_decription variable from a cstring array with a fixed memory to a cstring pointer that holds dynamic memory; and as a result of using dynamic memory, I added a copy constructor, a copy assignment operator and a destructor (rule of 3) to the food order class definition.
+
+//foodorder.h part 1
+
+class FoodOrder
+	{
+		char m_name[10];
+		char m_description[25];
+		double m_price;
+		bool m_dailySpecial;
+	public:
+		FoodOrder();
+		std::istream& read(std::istream& istr);
+		void display() const;
+		~FoodOrder();
+	};
+
+
+//foodorder.h part 2
+
+class FoodOrder
+	{
+		char m_name[10];
+		char* m_description;
+		double m_price;
+		bool m_dailySpecial;
+	public:
+		FoodOrder();
+		std::istream& read(std::istream& istr);
+		void display() const;
+		FoodOrder(const FoodOrder& src);
+		FoodOrder& operator=(const FoodOrder& src);
+		~FoodOrder();
+	};
+
+By adding these changes, I used deep and shallow copying, and "new" and "delete" for managing dynamic memory.
+
+Overall, the workshop had the right amount of challenge in terms of using static variables and understanding how linkage works. The rest was a helpful reminder and review of concepts learned in OOP244.

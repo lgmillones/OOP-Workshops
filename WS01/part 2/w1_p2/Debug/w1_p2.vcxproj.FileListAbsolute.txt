@@ -1,0 +1,2 @@
+C:\Users\Maria Isabel\Documents\Seneca\Winter 2022\Courses\OOP345\OOP-Workshops\WS01\part 2\w1_p2\Debug\w1_p2.exe
+C:\Users\Maria Isabel\Documents\Seneca\Winter 2022\Courses\OOP345\OOP-Workshops\WS01\part 2\w1_p2\Debug\w1_p2.pdb
